@@ -3,4 +3,4 @@ project(untitled)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(untitled main.cpp ArrayList.cpp ArrayList.h Hero.cpp Hero.h DwarfWarrior.cpp DwarfWarrior.h MagicMan.cpp MagicMan.h ElfScout.cpp ElfScout.h)
+add_executable(untitled main.cpp util/ArrayList/ArrayList.cpp util/ArrayList/ArrayList.h characters/Hero.cpp characters/Hero.h characters/DwarfWarrior.cpp characters/DwarfWarrior.h characters/MagicMan.cpp characters/MagicMan.h characters/ElfScout.cpp characters/ElfScout.h Player.cpp Player.h RealPlayer.cpp RealPlayer.h util/ReaderWrapper/ReaderWrapper.cpp util/ReaderWrapper/ReaderWrapper.h BotPlayer.cpp BotPlayer.h Game.cpp Game.h)

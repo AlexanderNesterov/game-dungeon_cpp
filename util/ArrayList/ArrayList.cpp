@@ -57,9 +57,6 @@ void ArrayList<T>::add(T item) {
 
 template<typename T>
 T ArrayList<T>::get(int index) {
-    bool t = index <= lastElementIndex;
-    cout << t << endl;
-
     if (index >= 0 && index <= lastElementIndex) {
         return array[index];
     }
