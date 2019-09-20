@@ -9,24 +9,24 @@
 
 class Hero {
 public:
-    Hero();
-    ~Hero();
-    virtual bool specialAction(Hero);
     void rest();
-    bool move(Hero);
-    bool fastMove(Hero);
+    bool move(Hero *);
+    bool fastMove(Hero *);
+    virtual bool specialAction(Hero *) = 0;
 protected:
+    Hero(std::string, int, int, int, std::string);
+    ~Hero();
     bool checkEndurance(int);
-    bool isDwarfUsedSpecAction(Hero);
+    bool isDwarfUsedSpecAction(Hero *);
     void doStep(int, int, int);
-private:
+
     std::string name;
-    int level;
+    int level = 0;
     int endurance;
     int maxEndurance;
-    bool isSpecActionUsed;
-    int recovery;
-    int moveCost;
+    bool isSpecActionUsed = false;
+    int recovery = 2;
+    int moveCost = 5;
     int fastMoveCost;
     int specActionCost;
     std::string specActionDescription;

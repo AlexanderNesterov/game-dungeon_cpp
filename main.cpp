@@ -1,9 +1,12 @@
 #include <iostream>
 #include "ArrayList.h"
 #include "ArrayList.cpp"
+#include "Hero.h"
+#include "DwarfWarrior.h"
+//#include "Hero.cpp"
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
+/*    std::cout << "Hello, World!" << std::endl;
     ArrayList<char > arrayList(8);
     arrayList.toString();
 
@@ -16,6 +19,8 @@ int main() {
 
     arrayList.toString();
     cout << arrayList.get(17) << endl;
-    cout << arrayList.getSize() << endl;
+    cout << arrayList.getSize() << endl;*/
+    Hero *hero = new DwarfWarrior("dw", 50, 15, 20, "ii");
+
     return 0;
 }
