@@ -3,6 +3,7 @@
 //
 
 #include "Hero.h"
+#include "DwarfWarrior.h"
 #include <iostream>
 using namespace std;
 
@@ -89,5 +90,27 @@ void Hero::doStep(int levelDifference, int step, int anotherHeroLevel) {
 
 //DO CHECK DWARF WARRIOR
 bool Hero::isDwarfUsedSpecAction(Hero *anotherHero) {
+    DwarfWarrior *dw = dynamic_cast<DwarfWarrior*> (anotherHero);
+    if (dw == nullptr) {
+        cout << "false" << endl;
+        return false;
+    }
+
+    cout << "true" << endl;
     return anotherHero->isSpecActionUsed;
+}
+
+void Hero::allFields() {
+    cout << "name: " << name << endl
+            << "level: " << level << endl
+            << "endurance: " << endurance << endl
+            << "maxEndurance: " << maxEndurance << endl
+            << "isSpecActionUsed: " << isSpecActionUsed << endl
+            << "recovery: " << recovery << endl
+            << "moveCost: " << moveCost << endl
+            << "fastMoveCost: " << fastMoveCost << endl
+            << "specActionCost: " << specActionCost << endl
+            << "specActionDescription: " << specActionDescription << endl;
+
+
 }

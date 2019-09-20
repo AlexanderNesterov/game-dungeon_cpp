@@ -17,6 +17,8 @@ protected:
     Hero(std::string, int, int, int, std::string);
     ~Hero();
     bool checkEndurance(int);
+
+public:
     bool isDwarfUsedSpecAction(Hero *);
     void doStep(int, int, int);
 
@@ -30,6 +32,10 @@ protected:
     int fastMoveCost;
     int specActionCost;
     std::string specActionDescription;
+
+    //delete it
+public:
+    void allFields();
 };
 
 

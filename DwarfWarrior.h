@@ -10,7 +10,7 @@
 
 class DwarfWarrior : public Hero {
 public:
-    DwarfWarrior(std::string, int, int, int, std::string);
+    DwarfWarrior();
     ~DwarfWarrior();
     bool specialAction(Hero *) override;
 };
