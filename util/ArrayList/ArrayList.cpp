@@ -60,6 +60,15 @@ T ArrayList<T>::get(int index) {
     if (index >= 0 && index <= lastElementIndex) {
         return array[index];
     }
+
+    return nullptr;
+}
+
+template <typename T>
+void ArrayList<T>::set(int index, T object) {
+    if (index >= 0 && index < size) {
+        array[index] = object;
+    }
 }
 
 template<typename T>

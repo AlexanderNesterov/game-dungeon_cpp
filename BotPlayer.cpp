@@ -6,7 +6,7 @@
 #include <iostream>
 using namespace std;
 
-BotPlayer::BotPlayer(Hero *hero) : Player(hero) {}
+BotPlayer::BotPlayer() {}
 
 BotPlayer::~BotPlayer() {}
 

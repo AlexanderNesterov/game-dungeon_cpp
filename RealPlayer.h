@@ -10,7 +10,7 @@
 
 class RealPlayer : public Player {
 public:
-    RealPlayer(Hero *);
+    RealPlayer();
     ~RealPlayer();
     void selectAction(Player *) override;
 };

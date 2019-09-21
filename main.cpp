@@ -6,11 +6,12 @@
 #include "characters/MagicMan.h"
 #include "characters/ElfScout.h"
 #include "util/ReaderWrapper/ReaderWrapper.h"
+#include "Game.h"
+
 using namespace std;
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
-/*
+/*    std::cout << "Hello, World!" << std::endl;
     ArrayList<Hero *> list(3);
     list.add(new DwarfWarrior());
     list.add(new MagicMan());
@@ -19,14 +20,14 @@ int main() {
     for (int i = 0; i < list.getSize(); ++i) {
         list.get(i)->allFields();
         cout << endl;
-    }*/
+    }
 
-/*    int str = std::stoi("s");
-    cout << str << endl;*/
+    cout << list.get(4) << endl;*/
 
+    //int num = ReaderWrapper::newInt();
 
-
-    int num = ReaderWrapper::newInt();
+    Game game;
+    game.startGame();
 
     return 0;
 }

@@ -31,8 +31,12 @@ public:
     int moveCost = 5;
     int fastMoveCost;
     int specActionCost;
-    std::string specActionDescription;
 
+
+    std::string specActionDescription;
+    std::string getName();
+    int getLevel();
+    void setSpecActionUse(bool);
     //delete it
 public:
     void allFields();

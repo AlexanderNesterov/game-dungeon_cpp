@@ -6,9 +6,7 @@
 #include <iostream>
 using namespace std;
 
-Player::Player(Hero *hero) {
-    this->hero = hero;
-}
+Player::Player() {}
 
 Player::~Player() {}
 
@@ -30,4 +28,20 @@ void Player::specialAction(Player *opponent) {
 
 void Player::moveDescription() {
     cout << hero->specActionDescription;
+}
+
+void Player::setHero(Hero *hero) {
+    this->hero = hero;
+}
+
+int Player::getLevel() {
+    return hero->getLevel();
+}
+
+std::string Player::getName() {
+    return hero->getName();
+}
+
+void Player::setSpecActionUse(bool t) {
+    hero->setSpecActionUse(t);
 }

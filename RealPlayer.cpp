@@ -7,14 +7,14 @@
 #include <iostream>
 using namespace std;
 
-RealPlayer::RealPlayer(Hero *anotherHero) : Player(anotherHero) {}
+RealPlayer::RealPlayer() {}
 
 RealPlayer::~RealPlayer() {}
 
 void RealPlayer::selectAction(Player *opponent) {
     int choice;
     cout << "Выберете действие: \n1:Отдых\n2:Спуск"
-            "\n3:Быстрый спуск\n4:Особое действие\n5:инфо");
+            "\n3:Быстрый спуск\n4:Особое действие\n5:инфо";
 
     do {
         choice = ReaderWrapper::newInt();

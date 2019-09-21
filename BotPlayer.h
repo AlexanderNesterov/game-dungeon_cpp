@@ -10,7 +10,7 @@
 
 class BotPlayer : public Player {
 public:
-    BotPlayer(Hero *);
+    BotPlayer();
     ~BotPlayer();
     void selectAction(Player *) override;
 };

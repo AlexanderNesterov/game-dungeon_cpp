@@ -8,18 +8,19 @@
 
 template <typename T>
 class ArrayList {
-private:
-    T *array;
-    int size;
-    int lastElementIndex;
 public:
     ArrayList();
     ArrayList(int);
     ~ArrayList();
     void add(T);
+    void set(int, T);
     T get(int);
     int getSize();
     void toString();
+private:
+    T *array;
+    int size;
+    int lastElementIndex;
 };
 
 

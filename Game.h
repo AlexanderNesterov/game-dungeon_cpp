@@ -8,6 +8,7 @@
 
 #include "Player.h"
 #include "util/ArrayList/ArrayList.h"
+//#include "util/ArrayList/ArrayList.cpp"
 
 class Game {
 public:
@@ -20,7 +21,9 @@ private:
     ArrayList<Hero *> *heroes;
     int level;
 
-    Player * selectHero();
+    void showAvailableHeroes();
+    void selectHero(Player *);
+    void selectPlayer(Player *);
     Player * game(Player *, Player *);
 };
 

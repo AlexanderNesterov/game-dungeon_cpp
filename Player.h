@@ -11,10 +11,14 @@
 class Player {
 public:
     virtual void selectAction(Player *) = 0;
+    void setHero(Hero *);
+    int getLevel();
+    std::string getName();
+    void setSpecActionUse(bool);
 protected:
     Hero *hero;
 
-    Player(Hero *);
+    Player();
     ~Player();
     void rest();
     void fastMove(Player *);

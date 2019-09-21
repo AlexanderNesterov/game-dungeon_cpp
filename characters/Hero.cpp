@@ -100,6 +100,18 @@ bool Hero::isDwarfUsedSpecAction(Hero *anotherHero) {
     return anotherHero->isSpecActionUsed;
 }
 
+std::string Hero::getName() {
+    return name;
+}
+
+int Hero::getLevel() {
+    return level;
+}
+
+void Hero::setSpecActionUse(bool t) {
+    isSpecActionUsed = t;
+}
+
 void Hero::allFields() {
     cout << "name: " << name << endl
             << "level: " << level << endl
