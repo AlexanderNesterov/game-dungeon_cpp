@@ -10,6 +10,7 @@
 #include "RealPlayer.h"
 #include "BotPlayer.h"
 #include <iostream>
+#include <ctime>
 #include "util/ArrayList/ArrayList.cpp"
 
 using namespace std;
@@ -18,7 +19,11 @@ Game::Game() {
     level = 20;
 }
 
-Game::~Game() {}
+Game::~Game() {
+    delete firstPlayer;
+    delete secondPlayer;
+    delete heroes;
+}
 
 void Game::startGame() {
     heroes = new ArrayList<Hero *>(3);
@@ -27,18 +32,27 @@ void Game::startGame() {
     heroes->add(new ElfScout());
     heroes->add(new MagicMan());
 
-    selectPlayer(firstPlayer);
-    selectPlayer(secondPlayer);
+    firstPlayer = selectPlayer();
+    secondPlayer = selectPlayer();
 
+    cout << "Выберете героя для первого игрока" << endl;
     selectHero(firstPlayer);
-    cout << "4" << endl;
+
+    cout << "Выберете героя для второго игрока" << endl;
     selectHero(secondPlayer);
 
-    Player *winner = game(firstPlayer, secondPlayer);
+    Player *winner;
+
+    if (!firstPlayer->isItBot() && !secondPlayer->isItBot()) {
+        winner = randomStart();
+    } else {
+        winner = game(firstPlayer, secondPlayer);
+    }
+
     cout << "ПОБЕДИТЕЛЬ - " << winner->getName() << endl;
 }
 
-void Game::selectPlayer(Player *player) {
+Player* Game::selectPlayer() {
     int choice;
 
     cout << "Выберете тип игрока\n1: Бот\n2: Игрок" << endl;
@@ -48,11 +62,9 @@ void Game::selectPlayer(Player *player) {
 
         switch (choice) {
             case 1:
-                player = new RealPlayer();
-                return;
+                return new BotPlayer();
             case 2:
-                player = new BotPlayer();
-                return;
+                return new RealPlayer();
 
             default:
                 cout << "НЕВЕРНОЕ ЧИСЛО!" << endl;
@@ -66,56 +78,54 @@ void Game::selectHero(Player *player) {
     while (true) {
         showAvailableHeroes();
 
-        //cout << "1" << endl;
-
         choice = ReaderWrapper::newInt();
 
-        //cout << "2" << endl;
-
-/*        if (choice <= 0 || choice > heroes->getSize()) {
+        if (choice < 0 || choice >= heroes->getSize()) {
             cout << "НЕВЕРНОЕ ЧИСЛО" << endl;
             continue;
-        }*/
-
-        //cout << "3" << endl;
-
-        switch (choice) {
-            case 1:
-                player->setHero(heroes->get(0));
-                heroes->set(0, nullptr);
-                return;
-            case 2:
-                player->setHero(heroes->get(1));
-                heroes->set(1, nullptr);
-                //player->setHero(new ElfScout());
-                return;
-            case 3:
-                player->setHero(heroes->get(2));
-                heroes->set(2, nullptr);
-                //player->setHero(new MagicMan());
-                return;
-
-            default:
-                cout << "НЕВЕРНОЕ ЧИСЛО" << endl;
         }
+
+        cout << heroes->get(choice) << endl;
+
+        if (heroes->get(choice) != nullptr) {
+            switch (choice) {
+                case 1:
+                    player->setHero(heroes->get(0));
+                    heroes->set(0, nullptr);
+                    return;
+                case 2:
+                    player->setHero(heroes->get(1));
+                    heroes->set(1, nullptr);
+                    return;
+                case 3:
+                    player->setHero(heroes->get(2));
+                    heroes->set(2, nullptr);
+                    return;
+            }
+        }
+
+        cout << "ГЕРОЙ ЗАНЯТ!" << endl;
     }
 }
 
-Player* Game::game(Player *, Player *) {
+Player* Game::game(Player *firstPlayer, Player *secondPlayer) {
     int turn = 1;
     cout << "\n\n\nИГРА НАЧАЛАСЬ" << endl;
 
     while (firstPlayer->getLevel() < level && secondPlayer->getLevel() < level) {
 
         cout << "\n\nХОД " << turn << ":\n" << endl;
-        cout << firstPlayer << "\n" << secondPlayer << endl;
+        firstPlayer->showIndicators();
+        secondPlayer->showIndicators();
 
         cout << "\nХОД " << firstPlayer->getName() << ":" << endl;
+        firstPlayer->selectAction(secondPlayer);
 
         if (firstPlayer->getLevel() >= level)
             break;
 
         cout << "\nХОД " << secondPlayer->getName() << endl;
+        secondPlayer->selectAction(firstPlayer);
 
         firstPlayer->setSpecActionUse(false);
         secondPlayer->setSpecActionUse(false);
@@ -123,9 +133,20 @@ Player* Game::game(Player *, Player *) {
         turn++;
     }
 
-    cout << firstPlayer << "\n" << secondPlayer;
-
     return (firstPlayer->getLevel() >= level) ? firstPlayer : secondPlayer;
+}
+
+Player* Game::randomStart() {
+    srand(time(0));
+    int num = 1 + rand() % 2;
+
+    cout << num << endl;
+
+    if (num % 2 == 0) {
+        return game(firstPlayer, secondPlayer);
+    } else {
+        return game(secondPlayer, firstPlayer);
+    }
 }
 
 void Game::showAvailableHeroes() {

@@ -13,9 +13,9 @@ public:
     bool move(Hero *);
     bool fastMove(Hero *);
     virtual bool specialAction(Hero *) = 0;
+    ~Hero();
 protected:
     Hero(std::string, int, int, int, std::string);
-    ~Hero();
     bool checkEndurance(int);
 
 public:
@@ -31,12 +31,18 @@ public:
     int moveCost = 5;
     int fastMoveCost;
     int specActionCost;
-
-
     std::string specActionDescription;
+
+
+    //public
     std::string getName();
     int getLevel();
     void setSpecActionUse(bool);
+    void showIndicators();
+    int getMoveCost();
+    int getFastMoveCost();
+    int getSpecActionCost();
+    std::string getSpecActionDescription();
     //delete it
 public:
     void allFields();

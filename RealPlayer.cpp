@@ -7,14 +7,18 @@
 #include <iostream>
 using namespace std;
 
-RealPlayer::RealPlayer() {}
+const static bool IS_BOT = false;
+
+RealPlayer::RealPlayer() : Player(IS_BOT) {}
 
 RealPlayer::~RealPlayer() {}
 
 void RealPlayer::selectAction(Player *opponent) {
     int choice;
+    std::string notEnoughEndurance = "НЕ ХВАТАЕТ ВЫНОСЛИВОСТИ!";
+
     cout << "Выберете действие: \n1:Отдых\n2:Спуск"
-            "\n3:Быстрый спуск\n4:Особое действие\n5:инфо";
+            "\n3:Быстрый спуск\n4:Особое действие\n5:инфо" << endl;
 
     do {
         choice = ReaderWrapper::newInt();
@@ -26,19 +30,31 @@ void RealPlayer::selectAction(Player *opponent) {
                 return;
             case 2:
                 cout << "Выбран: спуск" << endl;
-                this->move(opponent);
-                return;
+                if (this->move(opponent)) {
+                    return;
+                } else {
+                    cout << notEnoughEndurance << endl;
+                    continue;
+                }
             case 3:
                 cout << "Выбран: быстрый спуск" << endl;
-                this->fastMove(opponent);
-                return;
+                if (this->fastMove(opponent)) {
+                    return;
+                } else {
+                    cout << notEnoughEndurance << endl;
+                    continue;
+                }
             case 4:
                 cout << "Выбран: особое действие" << endl;
-                this->specialAction(opponent);
-                return;
+                if (this->specialAction(opponent)) {
+                    return;
+                } else {
+                    cout << notEnoughEndurance << endl;
+                    continue;
+                }
             case 5:
-                this->moveDescription();
-                return;
+                this->showInfo();
+                continue;
 
             default:
                 cout << "НЕВЕРНОЕ ЧИСЛО!" << endl;

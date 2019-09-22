@@ -4,14 +4,18 @@
 
 #include "BotPlayer.h"
 #include <iostream>
+#include <ctime>
 using namespace std;
 
-BotPlayer::BotPlayer() {}
+const static bool IS_BOT = true;
+
+BotPlayer::BotPlayer() : Player(IS_BOT) {}
 
 BotPlayer::~BotPlayer() {}
 
 void BotPlayer::selectAction(Player *opponent) {
     int choice;
+    srand(time(0));
 
     do {
         choice = 1 + rand() % 4;
@@ -22,20 +26,26 @@ void BotPlayer::selectAction(Player *opponent) {
                 this->rest();
                 return;
             case 2:
-                cout << "Выбран: спуск" << endl;
-                this->move(opponent);
-                return;
+                if (this->move(opponent)) {
+                    cout << "Выбран: спуск" << endl;
+                    return;
+                } else {
+                    continue;
+                }
             case 3:
-                cout << "Выбран: быстрый спуск" << endl;
-                this->fastMove(opponent);
-                return;
+                if (this->fastMove(opponent)) {
+                    cout << "Выбран: быстрый спуск" << endl;
+                    return;
+                } else {
+                    continue;
+                }
             case 4:
-                cout << "Выбран: особое действие" << endl;
-                this->specialAction(opponent);
-                return;
-            case 5:
-                this->moveDescription();
-                return;
+                if (this->specialAction(opponent)) {
+                    cout << "Выбран: особое действие" << endl;
+                    return;
+                } else {
+                    continue;
+                }
 
             default:
                 cout << "НЕВЕРНОЕ ЧИСЛО!" << endl;

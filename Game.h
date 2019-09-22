@@ -21,9 +21,10 @@ private:
     ArrayList<Hero *> *heroes;
     int level;
 
+    Player * randomStart();
     void showAvailableHeroes();
     void selectHero(Player *);
-    void selectPlayer(Player *);
+    Player * selectPlayer();
     Player * game(Player *, Player *);
 };
 

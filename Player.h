@@ -7,6 +7,7 @@
 
 
 #include "characters/Hero.h"
+#include "characters/DwarfWarrior.h"
 
 class Player {
 public:
@@ -15,16 +16,19 @@ public:
     int getLevel();
     std::string getName();
     void setSpecActionUse(bool);
+    void showIndicators();
+    bool isItBot();
+    void showInfo();
+    ~Player();
 protected:
     Hero *hero;
+    bool isBot;
 
-    Player();
-    ~Player();
+    Player(bool);
     void rest();
-    void fastMove(Player *);
-    void specialAction(Player *);
-    void move(Player *);
-    void moveDescription();
+    bool fastMove(Player *);
+    bool specialAction(Player *);
+    bool move(Player *);
 };
 
 

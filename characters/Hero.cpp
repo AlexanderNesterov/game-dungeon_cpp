@@ -42,6 +42,8 @@ bool Hero::move(Hero *anotherHero) {
     } else {
         level += step;
     }
+
+    endurance = endurance - moveCost + recovery;
 }
 
 bool Hero::fastMove(Hero *anotherHero) {
@@ -57,15 +59,12 @@ bool Hero::fastMove(Hero *anotherHero) {
     } else {
         level += step;
     }
+
+    endurance = endurance - fastMoveCost + recovery;
 }
 
 bool Hero::checkEndurance(int enduranceCost) {
-    if (endurance - enduranceCost >= 0) {
-        return true;
-    } else {
-        cout << "НЕ ХВАТАЕТ ВЫНОСЛИВОСТИ" << endl;
-        return false;
-    }
+    return endurance - enduranceCost >= 0;
 
 }
 
@@ -88,15 +87,12 @@ void Hero::doStep(int levelDifference, int step, int anotherHeroLevel) {
     }
 }
 
-//DO CHECK DWARF WARRIOR
 bool Hero::isDwarfUsedSpecAction(Hero *anotherHero) {
     DwarfWarrior *dw = dynamic_cast<DwarfWarrior*> (anotherHero);
     if (dw == nullptr) {
-        cout << "false" << endl;
         return false;
     }
 
-    cout << "true" << endl;
     return anotherHero->isSpecActionUsed;
 }
 
@@ -110,6 +106,28 @@ int Hero::getLevel() {
 
 void Hero::setSpecActionUse(bool t) {
     isSpecActionUsed = t;
+}
+
+void Hero::showIndicators() {
+    cout << "Игрок " << name
+    << ", уровень = " << level
+    << ", выносливость = " << endurance << endl;
+}
+
+int Hero::getMoveCost() {
+    return moveCost;
+}
+
+int Hero::getFastMoveCost() {
+    return fastMoveCost;
+}
+
+int Hero::getSpecActionCost() {
+    return specActionCost;
+}
+
+std::string Hero::getSpecActionDescription() {
+    return specActionDescription;
 }
 
 void Hero::allFields() {

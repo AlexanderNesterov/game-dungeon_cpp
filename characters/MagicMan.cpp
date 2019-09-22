@@ -21,7 +21,7 @@ bool MagicMan::specialAction(Hero *anotherHero) {
     if (!checkEndurance(specActionCost))
         return false;
 
-    if (isDwarfUsedSpecAction(anotherHero)) {
+    if (!isDwarfUsedSpecAction(anotherHero)) {
         int tempLevel = level;
         level = anotherHero->level;
         anotherHero->level = tempLevel;

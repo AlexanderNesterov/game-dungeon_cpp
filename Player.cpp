@@ -4,30 +4,31 @@
 
 #include "Player.h"
 #include <iostream>
+
 using namespace std;
 
-Player::Player() {}
+Player::Player(bool isBot) {
+    this->isBot = isBot;
+}
 
-Player::~Player() {}
+Player::~Player() {
+    delete hero;
+}
 
 void Player::rest() {
     hero->rest();
 }
 
-void Player::move(Player *opponent) {
-    hero->move(opponent->hero);
+bool Player::move(Player *opponent) {
+    return hero->move(opponent->hero);
 }
 
-void Player::fastMove(Player *opponent) {
-    hero->fastMove(opponent->hero);
+bool Player::fastMove(Player *opponent) {
+    return hero->fastMove(opponent->hero);
 }
 
-void Player::specialAction(Player *opponent) {
-    hero->specialAction(opponent->hero);
-}
-
-void Player::moveDescription() {
-    cout << hero->specActionDescription;
+bool Player::specialAction(Player *opponent) {
+    return hero->specialAction(opponent->hero);
 }
 
 void Player::setHero(Hero *newHero) {
@@ -44,4 +45,20 @@ std::string Player::getName() {
 
 void Player::setSpecActionUse(bool t) {
     hero->setSpecActionUse(t);
+}
+
+void Player::showIndicators() {
+    hero->showIndicators();
+}
+
+bool Player::isItBot() {
+    return isBot;
+}
+
+void Player::showInfo() {
+    cout << "Отдых: Восстанавливает дополнительно 3 ед. энергии Всего получаем 5 единиц." << endl;
+    cout << "Спуск: Перемещает персонажа на этаж ниже. Стоимость: " << hero->getMoveCost() << endl;
+    cout << "Быстрый спуск: Перемещает персонажа на 2 этажа ниже. Стоимость: " << hero->getFastMoveCost() << endl;
+    cout << "Особое действие: " << hero->getSpecActionDescription() <<
+    " Стоимость: " << hero->getSpecActionCost() << endl;
 }

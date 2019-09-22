@@ -7,28 +7,14 @@
 #include "characters/ElfScout.h"
 #include "util/ReaderWrapper/ReaderWrapper.h"*/
 #include "Game.h"
+#include "RealPlayer.h"
 //#include "Game.cpp"
 
 using namespace std;
 
 int main() {
-/*    std::cout << "Hello, World!" << std::endl;
-    ArrayList<Hero *> list(3);
-    list.add(new DwarfWarrior());
-    list.add(new MagicMan());
-    list.add(new ElfScout());
-
-    for (int i = 0; i < list.getSize(); ++i) {
-        list.get(i)->allFields();
-        cout << endl;
-    }
-
-    cout << list.get(4) << endl;*/
-
-    //int num = ReaderWrapper::newInt();
-
-    Game *game = new Game();
-    game->startGame();
+    Game game;
+    game.startGame();
 
     return 0;
 }

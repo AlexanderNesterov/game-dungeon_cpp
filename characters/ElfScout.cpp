@@ -27,4 +27,6 @@ bool ElfScout::specialAction(Hero *anotherHero) {
     } else {
         level += step;
     }
+
+    endurance = endurance - specActionCost + recovery;
 }
