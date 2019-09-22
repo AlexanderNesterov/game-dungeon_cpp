@@ -30,8 +30,8 @@ void Player::moveDescription() {
     cout << hero->specActionDescription;
 }
 
-void Player::setHero(Hero *hero) {
-    this->hero = hero;
+void Player::setHero(Hero *newHero) {
+    this->hero = newHero;
 }
 
 int Player::getLevel() {

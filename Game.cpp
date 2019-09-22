@@ -27,7 +27,6 @@ void Game::startGame() {
     heroes->add(new ElfScout());
     heroes->add(new MagicMan());
 
-
     selectPlayer(firstPlayer);
     selectPlayer(secondPlayer);
 
