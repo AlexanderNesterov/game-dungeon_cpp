@@ -23,7 +23,7 @@ bool DwarfWarrior::specialAction(Hero *anotherHero) {
 
     int step = 1;
 
-    level += level + step;
+    level += + step;
     isSpecActionUsed = true;
 
     endurance = endurance - specActionCost + recovery;

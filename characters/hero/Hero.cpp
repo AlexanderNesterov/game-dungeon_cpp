@@ -44,6 +44,7 @@ bool Hero::move(Hero *anotherHero) {
     }
 
     endurance = endurance - moveCost + recovery;
+    return true;
 }
 
 bool Hero::fastMove(Hero *anotherHero) {
@@ -61,6 +62,7 @@ bool Hero::fastMove(Hero *anotherHero) {
     }
 
     endurance = endurance - fastMoveCost + recovery;
+    return true;
 }
 
 bool Hero::checkEndurance(int enduranceCost) {

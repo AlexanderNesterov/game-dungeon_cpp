@@ -14,6 +14,7 @@ public:
     bool fastMove(Hero *);
     virtual bool specialAction(Hero *) = 0;
     ~Hero();
+
     std::string getName();
     int getLevel();
     void setLevel(int);
