@@ -3,15 +3,17 @@
 //
 
 #include "Game.h"
-#include "characters/DwarfWarrior.h"
-#include "characters/ElfScout.h"
-#include "characters/MagicMan.h"
-#include "util/ReaderWrapper/ReaderWrapper.h"
-#include "RealPlayer.h"
-#include "BotPlayer.h"
+#include "../characters/dwarfwarrior/DwarfWarrior.h"
+#include "../characters/elfscout/ElfScout.h"
+#include "../characters/magicman/MagicMan.h"
+#include "../util/ReaderWrapper/ReaderWrapper.h"
+#include "../players/realplayer/RealPlayer.h"
+#include "../players/botplayer/BotPlayer.h"
 #include <iostream>
 #include <ctime>
-#include "util/ArrayList/ArrayList.cpp"
+#include "thread"
+#include "chrono"
+#include "../util/ArrayList/ArrayList.cpp"
 
 using namespace std;
 
@@ -49,10 +51,10 @@ void Game::startGame() {
         winner = game(firstPlayer, secondPlayer);
     }
 
-    cout << "ПОБЕДИТЕЛЬ - " << winner->getName() << endl;
+    cout << endl << "ПОБЕДИТЕЛЬ - " << winner->getName() << endl;
 }
 
-Player* Game::selectPlayer() {
+Player *Game::selectPlayer() {
     int choice;
 
     cout << "Выберете тип игрока\n1: Бот\n2: Игрок" << endl;
@@ -80,14 +82,12 @@ void Game::selectHero(Player *player) {
 
         choice = ReaderWrapper::newInt();
 
-        if (choice < 0 || choice >= heroes->getSize()) {
+        if (choice < 1 || choice > heroes->getSize()) {
             cout << "НЕВЕРНОЕ ЧИСЛО" << endl;
             continue;
         }
 
-        cout << heroes->get(choice) << endl;
-
-        if (heroes->get(choice) != nullptr) {
+        if (heroes->get(choice - 1) != nullptr) {
             switch (choice) {
                 case 1:
                     player->setHero(heroes->get(0));
@@ -108,7 +108,7 @@ void Game::selectHero(Player *player) {
     }
 }
 
-Player* Game::game(Player *firstPlayer, Player *secondPlayer) {
+Player *Game::game(Player *firstPlayer, Player *secondPlayer) {
     int turn = 1;
     cout << "\n\n\nИГРА НАЧАЛАСЬ" << endl;
 
@@ -131,16 +131,18 @@ Player* Game::game(Player *firstPlayer, Player *secondPlayer) {
         secondPlayer->setSpecActionUse(false);
 
         turn++;
+
+        if (firstPlayer->isItBot() && secondPlayer->isItBot()) {
+            std::this_thread::sleep_for(std::chrono::milliseconds(500));
+        }
     }
 
     return (firstPlayer->getLevel() >= level) ? firstPlayer : secondPlayer;
 }
 
-Player* Game::randomStart() {
+Player *Game::randomStart() {
     srand(time(0));
     int num = 1 + rand() % 2;
-
-    cout << num << endl;
 
     if (num % 2 == 0) {
         return game(firstPlayer, secondPlayer);
@@ -153,7 +155,7 @@ void Game::showAvailableHeroes() {
     cout << "Доступные герои: " << endl;
     for (int i = 0; i < heroes->getSize(); ++i) {
         if (heroes->get(i) != nullptr) {
-            cout << i+1 << ". " << heroes->get(i)->getName() << endl;
+            cout << i + 1 << ". " << heroes->get(i)->getName() << endl;
         }
     }
 }

@@ -6,9 +6,8 @@
 #define UNTITLED_GAME_H
 
 
-#include "Player.h"
-#include "util/ArrayList/ArrayList.h"
-//#include "util/ArrayList/ArrayList.cpp"
+#include "../players/Player.h"
+#include "../util/ArrayList/ArrayList.h"
 
 class Game {
 public:

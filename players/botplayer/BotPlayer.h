@@ -6,7 +6,7 @@
 #define UNTITLED_BOTPLAYER_H
 
 
-#include "Player.h"
+#include "../Player.h"
 
 class BotPlayer : public Player {
 public:

@@ -23,8 +23,8 @@ bool MagicMan::specialAction(Hero *anotherHero) {
 
     if (!isDwarfUsedSpecAction(anotherHero)) {
         int tempLevel = level;
-        level = anotherHero->level;
-        anotherHero->level = tempLevel;
+        level = anotherHero->getLevel();
+        anotherHero->setLevel(tempLevel);
     }
 
     isSpecActionUsed = true;

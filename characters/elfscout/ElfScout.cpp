@@ -22,8 +22,8 @@ bool ElfScout::specialAction(Hero *anotherHero) {
     int step = 3;
 
     if (isDwarfUsedSpecAction(anotherHero)) {
-        int levelDifference = anotherHero->level - level;
-        doStep(levelDifference, step, anotherHero->level);
+        int levelDifference = anotherHero->getLevel() - level;
+        doStep(levelDifference, step, anotherHero->getLevel());
     } else {
         level += step;
     }

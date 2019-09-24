@@ -6,8 +6,8 @@
 #define UNTITLED_PLAYER_H
 
 
-#include "characters/Hero.h"
-#include "characters/DwarfWarrior.h"
+#include "../characters/hero/Hero.h"
+#include "../characters/dwarfwarrior/DwarfWarrior.h"
 
 class Player {
 public:

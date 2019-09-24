@@ -9,8 +9,6 @@ using namespace std;
 
 template<typename T>
 ArrayList<T>::ArrayList() {
-    cout << "Конструктор по умолчанию" << endl;
-
     size = 10;
     array = new T[size];
     lastElementIndex = -1;
@@ -18,7 +16,6 @@ ArrayList<T>::ArrayList() {
 
 template<typename T>
 ArrayList<T>::ArrayList(int size) {
-    cout << "Конструктор size: " << size << endl;
     size = size > 0 ? size : 10;
 
     this->size = size;
@@ -29,16 +26,12 @@ ArrayList<T>::ArrayList(int size) {
 
 template<typename T>
 ArrayList<T>::~ArrayList() {
-    cout << "Деструктор" << endl;
-
     size = lastElementIndex = 0;
     delete[] array;
 }
 
 template<typename T>
 void ArrayList<T>::add(T item) {
-    //cout << "ADD" << endl;
-
     if (++lastElementIndex >= size) {
         cout << "SIZE" << endl;
         T *newArray = new T[size + 10];

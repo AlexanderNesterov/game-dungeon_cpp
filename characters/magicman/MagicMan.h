@@ -6,7 +6,7 @@
 #define UNTITLED_MAGICMAN_H
 
 
-#include "Hero.h"
+#include "../hero/Hero.h"
 
 class MagicMan : public Hero {
 public:

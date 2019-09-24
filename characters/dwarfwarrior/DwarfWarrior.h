@@ -6,7 +6,7 @@
 #define UNTITLED_DWARFWARRIOR_H
 
 
-#include "Hero.h"
+#include "../hero/Hero.h"
 
 class DwarfWarrior : public Hero {
 public:

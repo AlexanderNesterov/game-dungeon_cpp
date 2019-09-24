@@ -6,7 +6,7 @@
 #define UNTITLED_REALPLAYER_H
 
 
-#include "Player.h"
+#include "../Player.h"
 
 class RealPlayer : public Player {
 public:

@@ -3,7 +3,7 @@
 //
 
 #include "Hero.h"
-#include "DwarfWarrior.h"
+#include "../dwarfwarrior/DwarfWarrior.h"
 #include <iostream>
 using namespace std;
 
@@ -104,6 +104,10 @@ int Hero::getLevel() {
     return level;
 }
 
+void Hero::setLevel(int level) {
+    this->level = level;
+}
+
 void Hero::setSpecActionUse(bool t) {
     isSpecActionUsed = t;
 }
@@ -128,19 +132,4 @@ int Hero::getSpecActionCost() {
 
 std::string Hero::getSpecActionDescription() {
     return specActionDescription;
-}
-
-void Hero::allFields() {
-    cout << "name: " << name << endl
-            << "level: " << level << endl
-            << "endurance: " << endurance << endl
-            << "maxEndurance: " << maxEndurance << endl
-            << "isSpecActionUsed: " << isSpecActionUsed << endl
-            << "recovery: " << recovery << endl
-            << "moveCost: " << moveCost << endl
-            << "fastMoveCost: " << fastMoveCost << endl
-            << "specActionCost: " << specActionCost << endl
-            << "specActionDescription: " << specActionDescription << endl;
-
-
 }

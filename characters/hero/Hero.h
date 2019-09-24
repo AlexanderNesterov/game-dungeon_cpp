@@ -14,11 +14,18 @@ public:
     bool fastMove(Hero *);
     virtual bool specialAction(Hero *) = 0;
     ~Hero();
+    std::string getName();
+    int getLevel();
+    void setLevel(int);
+    void setSpecActionUse(bool);
+    void showIndicators();
+    int getMoveCost();
+    int getFastMoveCost();
+    int getSpecActionCost();
+    std::string getSpecActionDescription();
 protected:
     Hero(std::string, int, int, int, std::string);
     bool checkEndurance(int);
-
-public:
     bool isDwarfUsedSpecAction(Hero *);
     void doStep(int, int, int);
 
@@ -32,20 +39,6 @@ public:
     int fastMoveCost;
     int specActionCost;
     std::string specActionDescription;
-
-
-    //public
-    std::string getName();
-    int getLevel();
-    void setSpecActionUse(bool);
-    void showIndicators();
-    int getMoveCost();
-    int getFastMoveCost();
-    int getSpecActionCost();
-    std::string getSpecActionDescription();
-    //delete it
-public:
-    void allFields();
 };
 
 

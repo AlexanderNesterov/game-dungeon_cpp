@@ -6,7 +6,7 @@
 #define UNTITLED_ELFSCOUT_H
 
 
-#include "Hero.h"
+#include "../hero/Hero.h"
 
 class ElfScout : public Hero {
 public:
